@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"name": "hiyuki2578",
+	"name": "nyanize chrome extension",
 	"version": "1",
 	"description": "nyanize all website",
 	"content_scripts":
