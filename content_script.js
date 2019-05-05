@@ -29,7 +29,6 @@ function handleText(textNode)
 	v = v.replace(/な/g, "にゃ");
 	v = v.replace(/ナ/g, "ニャ");
 	v = v.replace(/ﾅ/g, "ﾆｬ");
-	v = v.replace(/na/g, "nya");
 
 	textNode.nodeValue = v;
 }
