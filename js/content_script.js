@@ -1,6 +1,6 @@
-chrome.storage.sync.get(null, function (data) {
+chrome.storage.local.get(null, function (data) {
 	if (typeof data.nyanizeStatus === 'undefined') {
-		chrome.storage.sync.set({
+		chrome.storage.local.set({
 			nyanizeStatus: 1
 		});
 		walk(document.body);
