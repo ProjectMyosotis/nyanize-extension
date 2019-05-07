@@ -1,4 +1,12 @@
+var UpperCase = false;
 chrome.storage.local.get(null, function (data) {
+	if (typeof data.UpperCase === 'undefined') {
+		chrome.storage.local.set({
+			UpperCase: 1
+		});
+	} else {
+		UpperCase = !!data.UpperCase;
+	}
 	if (typeof data.nyanizeStatus === 'undefined') {
 		chrome.storage.local.set({
 			nyanizeStatus: 1
@@ -50,6 +58,12 @@ function handleText(textNode) {
 	v = v.replace(/な/g, "にゃ");
 	v = v.replace(/ナ/g, "ニャ");
 	v = v.replace(/ﾅ/g, "ﾆｬ");
+	if(UpperCase === true) {
+		v = v.replace(/na/gi, "Nya");
+	} else {
+		v = v.replace(/na/gi, "nya");
+	}
+
 	if(textNode.nodeValue !== v){
 		textNode.nodeValue = v;
 	}
