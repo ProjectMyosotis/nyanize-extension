@@ -6,21 +6,21 @@
 var syncRules;
 
 function init_main() {
-    //get the current enabled state and rule list
+    //get the current enyabled state and rule list
     chrome.storage.local.get('nyanizeStatus', function (data) {
         if (typeof data.nyanizeStatus === "undefined") {
-            //this is first use; enable by default and save
+            //this is first use; enyable by default and save
             chrome.storage.local.set({
                 "nyanizeStatus": 1
             });
-            var isEnabled = 1;
+            var isEnyabled = 1;
         }
         else {
-            var isEnabled = parseInt(data.nyanizeStatus);
+            var isEnyabled = parseInt(data.nyanizeStatus);
         }
 
         //make the switch reflect our current state
-        if (isEnabled) {
+        if (isEnyabled) {
             $('#nyanizeStatus').bootstrapSwitch('state', true);
         }
         else {
@@ -38,7 +38,7 @@ function init_main() {
 //bind events to dom elements
 document.addEventListener('DOMContentLoaded', init_main);
 
-//handle enabling or disabling or the extension
+//handle enyabling or disabling or the extension
 $('#nyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
     if (state) {
         chrome.storage.local.set({
