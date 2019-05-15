@@ -1,40 +1,38 @@
 chrome.storage.local.get(null, function (data) {
-	if (typeof data.nyanizeStatus === 'undefined') {
+	const isFirstUse = typeof data.nyanizeStatus === 'undefined';
+	if (isFirstUse) {
 		chrome.storage.local.set({
 			nyanizeStatus: 1
 		});
+	}
+	if (isFirstUse || parseInt(data.nyanizeStatus)) {
 		walk(document.body);
-		new MutationObserver(function () {
-			walk(document.body);
+		new MutationObserver(function (mutationRecords) {
+			for(const record of mutationRecords) {
+				for(const node of record.addedNodes) {
+					walk(node)
+				}
+			}
 		}).observe(document.body, {
 			childList: true,
 			subtree: true
 		});
-	} else {
-		if (parseInt(data.nyanizeStatus)) {
-			walk(document.body);
-			new MutationObserver(function () {
-				walk(document.body);
-			}).observe(document.body, {
-				childList: true,
-				subtree: true
-			});
-		}
 	}
 });
 
 function walk(node) {
-	var child, next;
-
 	switch (node.nodeType) {
 		case 1:  // Element
+			// ignore special node
+			if(["SCRIPT", "CODE"].includes(node.nodeName)) {
+				break;
+			}
 		case 9:  // Document
 		case 11: // Document fragment
-			child = node.firstChild;
+			let child = node.firstChild;
 			while (child) {
-				next = child.nextSibling;
 				walk(child);
-				child = next;
+				child = child.nextSibling;
 			}
 			break;
 
@@ -45,7 +43,7 @@ function walk(node) {
 }
 
 function handleText(textNode) {
-	var v = textNode.nodeValue;
+	let v = textNode.nodeValue;
 
 	v = v.replace(/な/g, "にゃ");
 	v = v.replace(/ナ/g, "ニャ");
