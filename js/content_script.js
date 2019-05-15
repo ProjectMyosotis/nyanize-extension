@@ -24,17 +24,18 @@ chrome.storage.local.get(null, function (data) {
 });
 
 function walk(node) {
-	var child, next;
-
 	switch (node.nodeType) {
 		case 1:  // Element
+			// ignore special node
+			if(["SCRIPT", "CODE"].includes(node.nodeName)) {
+				break;
+			}
 		case 9:  // Document
 		case 11: // Document fragment
-			child = node.firstChild;
+			let child = node.firstChild;
 			while (child) {
-				next = child.nextSibling;
 				walk(child);
-				child = next;
+				child = child.nextSibling;
 			}
 			break;
 
