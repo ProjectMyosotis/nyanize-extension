@@ -1,25 +1,22 @@
 chrome.storage.local.get(null, function (data) {
-	if (typeof data.nyanizeStatus === 'undefined') {
+	const isFirstUse = typeof data.nyanizeStatus === 'undefined';
+	if (isFirstUse) {
 		chrome.storage.local.set({
 			nyanizeStatus: 1
 		});
+	}
+	if (isFirstUse || parseInt(data.nyanizeStatus)) {
 		walk(document.body);
-		new MutationObserver(function () {
-			walk(document.body);
+		new MutationObserver(function (mutationRecords) {
+			for(const record of mutationRecords) {
+				for(const node of record.addedNodes) {
+					walk(node)
+				}
+			}
 		}).observe(document.body, {
 			childList: true,
 			subtree: true
 		});
-	} else {
-		if (parseInt(data.nyanizeStatus)) {
-			walk(document.body);
-			new MutationObserver(function () {
-				walk(document.body);
-			}).observe(document.body, {
-				childList: true,
-				subtree: true
-			});
-		}
 	}
 });
 
@@ -46,7 +43,7 @@ function walk(node) {
 }
 
 function handleText(textNode) {
-	var v = textNode.nodeValue;
+	let v = textNode.nodeValue;
 
 	v = v.replace(/な/g, "にゃ");
 	v = v.replace(/ナ/g, "ニャ");
