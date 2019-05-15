@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Nyanize Extension",
 	"short_name": "Nyanize",
-	"version": "1.5",
+	"version": "1.6",
 	"description": "nyanize all website",
 	"browser_action":{
 		"default_title": "Nyanize Options",
