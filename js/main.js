@@ -27,9 +27,30 @@ function init_main() {
             $('#nyanizeStatus').bootstrapSwitch('state', false);
         }
     });
+    chrome.storage.local.get('ultimatenyanizeStatus', function (data) {
+        if (typeof data.ultimatenyanizeStatus === "undefined") {
+            //this is first use; enyable by default and save
+            chrome.storage.local.set({
+                "ultimatenyanizeStatus": 0
+            });
+            var isEnyabled = 0;
+        }
+        else {
+            var isEnyabled = parseInt(data.ultimatenyanizeStatus);
+        }
+
+        //make the switch reflect our current state
+        if (isEnyabled) {
+            $('#ultimatenyanizeStatus').bootstrapSwitch('state', true);
+        }
+        else {
+            $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
+        }
+    });
 
     //init our switch
     $('#nyanizeStatus').bootstrapSwitch();
+    $('#ultimatenyanizeStatus').bootstrapSwitch();
 
     //show the menu
     $('html').hide().fadeIn('slow');
@@ -48,6 +69,19 @@ $('#nyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
     else {
         chrome.storage.local.set({
             "nyanizeStatus": 0
+        });
+    }
+});
+
+$('#ultimatenyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
+    if (state) {
+        chrome.storage.local.set({
+            "ultimatenyanizeStatus": 1
+        });
+    }
+    else {
+        chrome.storage.local.set({
+            "ultimatenyanizeStatus": 0
         });
     }
 });
