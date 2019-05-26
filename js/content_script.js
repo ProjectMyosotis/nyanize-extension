@@ -9,7 +9,7 @@ chrome.storage.local.get(null, function (data) {
     const isUltimateFirstUse = typeof data.ultimatenyanizeStatus === 'undefined';
     if (isUltimateFirstUse) {
         chrome.storage.local.set({
-            ultimatenyanizeStatus: 1
+            ultimatenyanizeStatus: 0
         });
     }else{
         ultimatenyanizeStatus = parseInt(data.ultimatenyanizeStatus)

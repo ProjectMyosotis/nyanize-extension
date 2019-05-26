@@ -31,9 +31,9 @@ function init_main() {
         if (typeof data.ultimatenyanizeStatus === "undefined") {
             //this is first use; enyable by default and save
             chrome.storage.local.set({
-                "ultimatenyanizeStatus": 1
+                "ultimatenyanizeStatus": 0
             });
-            var isEnyabled = 1;
+            var isEnyabled = 0;
         }
         else {
             var isEnyabled = parseInt(data.ultimatenyanizeStatus);
