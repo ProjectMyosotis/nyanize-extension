@@ -5,7 +5,7 @@ chrome.storage.local.get(null, function (data) {
         chrome.storage.local.set({
             nyanizeStatus: 1
         });
-    }else{
+    } else {
         nyanizeStatus = parseInt(data.nyanizeStatus);
     }
     if (isFirstUse || nyanizeStatus != 0) {
@@ -47,14 +47,14 @@ function walk(node) {
 
 function handleText(textNode) {
     let v = textNode.nodeValue;
-    if(nyanizeStatus === 2){
+    if (nyanizeStatus === 2) {
         v = v.replace(/[ぁ-ん]/g, "にゃ");
         v = v.replace(/[ァ-ン]/g, "ニャ");
         v = v.replace(/[ｧ-ﾝﾞﾟ]/g, "ﾆｬ");
         v = v.replace(/[一-龥]/g, "にゃ");
         v = v.replace(/[a-z]/g, "nya");
         v = v.replace(/[A-Z]/g, "NYA");
-    }else{
+    } else {
         v = v.replace(/な/g, "にゃ");
         v = v.replace(/ナ/g, "ニャ");
         v = v.replace(/ﾅ/g, "ﾆｬ");

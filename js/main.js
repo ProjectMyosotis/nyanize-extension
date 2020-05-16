@@ -14,11 +14,10 @@ function init_main() {
         if (isEnyabled == 1) {
             $('#nyanizeStatus').bootstrapSwitch('state', true);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
-        }else if (isEnyabled == 2){
+        } else if (isEnyabled == 2){
             $('#nyanizeStatus').bootstrapSwitch('state', true);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', true);
-        }
-        else {
+        } else {
             $('#nyanizeStatus').bootstrapSwitch('state', false);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
         }
@@ -40,8 +39,7 @@ $('#nyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
         chrome.storage.local.set({
             "nyanizeStatus": 1
         });
-    }
-    else {
+    } else {
         $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
         chrome.storage.local.set({
             "nyanizeStatus": 0
@@ -55,8 +53,7 @@ $('#ultimatenyanizeStatus').on('switchChange.bootstrapSwitch', function (event, 
         chrome.storage.local.set({
             "nyanizeStatus": 2
         });
-    }
-    else {
+    } else {
         chrome.storage.local.set({
             "nyanizeStatus": 1
         });
