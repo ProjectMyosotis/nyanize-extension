@@ -1,14 +1,9 @@
-let nyanizeStatus = 0;
+let nyanizeStatus = 1;
 chrome.storage.local.get(null, function (data) {
-    const isFirstUse = typeof data.nyanizeStatus === 'undefined';
-    if (isFirstUse) {
-        chrome.storage.local.set({
-            nyanizeStatus: 1
-        });
-    } else {
+    if (typeof data.nyanizeStatus !== "undefined") {
         nyanizeStatus = parseInt(data.nyanizeStatus);
     }
-    if (isFirstUse || nyanizeStatus != 0) {
+    if (nyanizeStatus != 0) {
         walk(document.body);
         new MutationObserver(function (mutationRecords) {
             for(const record of mutationRecords) {
