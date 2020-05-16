@@ -14,7 +14,7 @@ function init_main() {
         if (isEnyabled == 1) {
             $('#nyanizeStatus').bootstrapSwitch('state', true);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
-        } else if (isEnyabled == 2){
+        } else if (isEnyabled == 2) {
             $('#nyanizeStatus').bootstrapSwitch('state', true);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', true);
         } else {
