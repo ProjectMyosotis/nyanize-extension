@@ -1,20 +1,14 @@
-let ultimatenyanizeStatus = 0;
+let nyanizeStatus = 0;
 chrome.storage.local.get(null, function (data) {
     const isFirstUse = typeof data.nyanizeStatus === 'undefined';
     if (isFirstUse) {
         chrome.storage.local.set({
             nyanizeStatus: 1
         });
-    }
-    const isUltimateFirstUse = typeof data.ultimatenyanizeStatus === 'undefined';
-    if (isUltimateFirstUse) {
-        chrome.storage.local.set({
-            ultimatenyanizeStatus: 0
-        });
     }else{
-        ultimatenyanizeStatus = parseInt(data.ultimatenyanizeStatus)
+        nyanizeStatus = parseInt(data.nyanizeStatus);
     }
-    if (isFirstUse || parseInt(data.nyanizeStatus)) {
+    if (isFirstUse || nyanizeStatus != 0) {
         walk(document.body);
         new MutationObserver(function (mutationRecords) {
             for(const record of mutationRecords) {
@@ -53,7 +47,7 @@ function walk(node) {
 
 function handleText(textNode) {
     let v = textNode.nodeValue;
-    if(ultimatenyanizeStatus === 1){
+    if(nyanizeStatus === 2){
         v = v.replace(/[ぁ-ん]/g, "にゃ");
         v = v.replace(/[ァ-ン]/g, "ニャ");
         v = v.replace(/[ｧ-ﾝﾞﾟ]/g, "ﾆｬ");

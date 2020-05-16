@@ -3,51 +3,26 @@
 ** description: javascript code for "html/main.html" page
 */
 
-var syncRules;
-
 function init_main() {
+    let isEnyabled = 1;
     //get the current enyabled state and rule list
     chrome.storage.local.get('nyanizeStatus', function (data) {
-        if (typeof data.nyanizeStatus === "undefined") {
-            //this is first use; enyable by default and save
-            chrome.storage.local.set({
-                "nyanizeStatus": 1
-            });
-            var isEnyabled = 1;
+        if (typeof data.nyanizeStatus !== "undefined") {
+            isEnyabled = parseInt(data.nyanizeStatus);
         }
-        else {
-            var isEnyabled = parseInt(data.nyanizeStatus);
-        }
-
         //make the switch reflect our current state
-        if (isEnyabled) {
+        if (isEnyabled == 1) {
             $('#nyanizeStatus').bootstrapSwitch('state', true);
-        }
-        else {
-            $('#nyanizeStatus').bootstrapSwitch('state', false);
-        }
-    });
-    chrome.storage.local.get('ultimatenyanizeStatus', function (data) {
-        if (typeof data.ultimatenyanizeStatus === "undefined") {
-            //this is first use; enyable by default and save
-            chrome.storage.local.set({
-                "ultimatenyanizeStatus": 0
-            });
-            var isEnyabled = 0;
-        }
-        else {
-            var isEnyabled = parseInt(data.ultimatenyanizeStatus);
-        }
-
-        //make the switch reflect our current state
-        if (isEnyabled) {
+            $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
+        }else if (isEnyabled == 2){
+            $('#nyanizeStatus').bootstrapSwitch('state', true);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', true);
         }
         else {
+            $('#nyanizeStatus').bootstrapSwitch('state', false);
             $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
         }
     });
-
     //init our switch
     $('#nyanizeStatus').bootstrapSwitch();
     $('#ultimatenyanizeStatus').bootstrapSwitch();
@@ -67,6 +42,7 @@ $('#nyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
         });
     }
     else {
+        $('#ultimatenyanizeStatus').bootstrapSwitch('state', false);
         chrome.storage.local.set({
             "nyanizeStatus": 0
         });
@@ -75,13 +51,14 @@ $('#nyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
 
 $('#ultimatenyanizeStatus').on('switchChange.bootstrapSwitch', function (event, state) {
     if (state) {
+        $('#nyanizeStatus').bootstrapSwitch('state', true);
         chrome.storage.local.set({
-            "ultimatenyanizeStatus": 1
+            "nyanizeStatus": 2
         });
     }
     else {
         chrome.storage.local.set({
-            "ultimatenyanizeStatus": 0
+            "nyanizeStatus": 1
         });
     }
 });
