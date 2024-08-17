@@ -71,11 +71,16 @@ function handleText(textNode: Text) {
     return;
   }
   if (nyanizeStatus === 2) {
+    v = v.replace(/にゃ/g, "な"); // temporary reverse
     v = v.replace(/[ぁ-ん]/g, "にゃ");
+    v = v.replace(/ニャ/g, "ナ"); // temporary reverse
     v = v.replace(/[ァ-ン]/g, "ニャ");
+    v=  v.replace(/ﾆｬ/g, "ﾅ"); // temporary reverse
     v = v.replace(/[ｧ-ﾝﾞﾟ]/g, "ﾆｬ");
     v = v.replace(/[一-龥]/g, "にゃ");
+    v = v.replace(/nya/g, "n"); // temporary reverse
     v = v.replace(/[a-z]/g, "nya");
+    v = v.replace(/NYA/g, "N"); // temporary reverse
     v = v.replace(/[A-Z]/g, "NYA");
   } else {
     v = v.replace(/な/g, "にゃ");
