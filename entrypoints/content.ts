@@ -18,7 +18,7 @@ async function nyanize() {
   walk(document.body);
 
   const observer = new MutationObserver((mutationRecords) => {
-    for (const record of mutationRecords) {
+    for (const record of mutationRecords) {        
       for (const node of record.addedNodes) {
         walk(node);
       }
@@ -60,6 +60,9 @@ function walk(node: Node) {
     case 3: // Text node
       handleText(node as Text);
       break;
+
+    default:
+      console.log(node)
   }
 }
 
