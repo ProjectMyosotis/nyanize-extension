@@ -17,10 +17,10 @@ async function init_main() {
     "ultimatenyanizeStatus",
   ) as HTMLInputElement;
 
-  if (isEnyabled == 1) {
+  if (isEnyabled === 1) {
     nyanizeStatus.checked = true;
     ultimatenyanizeStatus.checked = false;
-  } else if (isEnyabled == 2) {
+  } else if (isEnyabled === 2) {
     nyanizeStatus.checked = true;
     ultimatenyanizeStatus.checked = true;
   } else {
