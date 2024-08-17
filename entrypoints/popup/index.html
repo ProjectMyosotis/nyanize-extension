@@ -1,43 +1,47 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" style="display: none;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nyanize Extension</title>
     <meta name="manifest.type" content="browser_action" />
-
-    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap-switch.min.js"></script>
-
-</head>
+  </head>
   <body>
     <div id="main-outer">
       <div id="main-inner">
-          <div id="main-title">Nyanize</div>
-          <p style="text-align: center;">
-              Nyanize is currently:
-              <input
-                  type="checkbox"
-                  id="nyanizeStatus"
-                  name="nyanizeStatus"
-                  data-size="mini"
-                  checked
-              />
-          </p>
-          <p style="text-align: center;">
-              Ultimate Nyanize mode:
-              <input
-                  type="checkbox"
-                  id="ultimatenyanizeStatus"
-                  name="ultimatenyanizeStatus"
-                  data-size="mini"
-                  checked
-              />
-          </p>
+        <h1 id="main-title">Nyanize</h1>
+        <p >
+          <label class="form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="nyanizeStatus"
+              name="nyanizeStatus"
+              data-size="mini"
+              role="switch"
+            />
+            Enable nyanize
+          </label>
+        </p>
+        <p>
+          <label class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="ultimatenyanizeStatus"
+              name="ultimatenyanizeStatus"
+              data-size="mini"
+              role="switch"
+            />
+            Ultimate Nyanize mode
+          </label>
+        </p>
+        <p>
+          Settings are effective after reloading.
+        </p>
       </div>
-  </div>
+    </div>
 
-  <script type="module" src="./main.ts"></script>
+    <script type="module" src="./main.ts"></script>
   </body>
 </html>
