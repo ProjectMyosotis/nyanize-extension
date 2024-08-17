@@ -2,7 +2,7 @@ import { defineConfig } from 'wxt';
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-    manifestVersion: 2,
+    manifestVersion: 3,
     manifest: {
         "name": "Nyanize Extension",
         "short_name": "Nyanize",
