@@ -46,7 +46,7 @@ function walk(node: Node) {
   switch (node.nodeType) {
     case 1:  // Element
       // ignore special node
-      if (["SCRIPT", "CODE"].includes(node.nodeName)) {
+      if(["SCRIPT", "CODE", "SVG", "NOSCRIPT", "STYLE"].includes(node.nodeName)) {
         break;
       }
     case 9:  // Document
