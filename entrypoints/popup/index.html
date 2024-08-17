@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nyanize Extension</title>
+    <meta name="manifest.type" content="browser_action" />
+
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap-switch.min.js"></script>
+
+</head>
+  <body>
+    <div id="main-outer">
+      <div id="main-inner">
+          <div id="main-title">Nyanize</div>
+          <p style="text-align: center;">
+              Nyanize is currently:
+              <input
+                  type="checkbox"
+                  id="nyanizeStatus"
+                  name="nyanizeStatus"
+                  data-size="mini"
+                  checked
+              />
+          </p>
+          <p style="text-align: center;">
+              Ultimate Nyanize mode:
+              <input
+                  type="checkbox"
+                  id="ultimatenyanizeStatus"
+                  name="ultimatenyanizeStatus"
+                  data-size="mini"
+                  checked
+              />
+          </p>
+      </div>
+  </div>
+
+  <script type="module" src="./main.ts"></script>
+  </body>
+</html>
