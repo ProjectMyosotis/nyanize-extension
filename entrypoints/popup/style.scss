@@ -4,23 +4,21 @@
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/root";
 
-
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/type";
 @import "bootstrap/scss/forms/form-check";
 
-
 div#main-outer {
   width: 300px;
   margin: 5px;
-  background: #DDD;
+  background: #ddd;
   border-radius: 5px;
 }
 
 div#main-outer-options {
   width: 500px;
   margin: 5px;
-  background: #DDD;
+  background: #ddd;
   border-radius: 5px;
 }
 

@@ -3,11 +3,10 @@ export default defineContentScript({
   runAt: "document_end",
   main() {
     nyanize();
-  }
-})
+  },
+});
 
 let nyanizeStatus = 1;
-
 
 async function nyanize() {
   await initConfigs();
@@ -24,8 +23,6 @@ async function nyanize() {
         walk(node);
       }
     }
-
-
   });
 
   observer.observe(document.body, {
@@ -44,12 +41,14 @@ async function initConfigs() {
 
 function walk(node: Node) {
   switch (node.nodeType) {
-    case 1:  // Element
+    case 1: // Element
       // ignore special node
-      if(["SCRIPT", "CODE", "SVG", "NOSCRIPT", "STYLE"].includes(node.nodeName)) {
+      if (
+        ["SCRIPT", "CODE", "SVG", "NOSCRIPT", "STYLE"].includes(node.nodeName)
+      ) {
         break;
       }
-    case 9:  // Document
+    case 9: // Document
     case 11: // Document fragment
       let child = node.firstChild;
       while (child) {
@@ -75,7 +74,7 @@ function handleText(textNode: Text) {
     v = v.replace(/[ぁ-ん]/g, "にゃ");
     v = v.replace(/ニャ/g, "ナ"); // temporary reverse
     v = v.replace(/[ァ-ン]/g, "ニャ");
-    v=  v.replace(/ﾆｬ/g, "ﾅ"); // temporary reverse
+    v = v.replace(/ﾆｬ/g, "ﾅ"); // temporary reverse
     v = v.replace(/[ｧ-ﾝﾞﾟ]/g, "ﾆｬ");
     v = v.replace(/[一-龥]/g, "にゃ");
     v = v.replace(/nya/g, "n"); // temporary reverse

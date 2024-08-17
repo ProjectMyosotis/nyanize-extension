@@ -12,10 +12,12 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
+    "format": "prettier --write entrypoints wxt.config.ts",
     "postinstall": "wxt prepare"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.30",
+    "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.5.4",
     "wxt": "^0.19.1"
