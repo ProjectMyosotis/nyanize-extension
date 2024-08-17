@@ -18,14 +18,14 @@ async function nyanize() {
 
   walk(document.body);
 
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      // if (mutation.type === "characterData") {
-      //   handleText(mutation.target);
-      // } else {
-      walk(mutation.target);
-      // }
-    });
+  const observer = new MutationObserver((mutationRecords) => {
+    for (const record of mutationRecords) {
+      for (const node of record.addedNodes) {
+        walk(node);
+      }
+    }
+
+
   });
 
   observer.observe(document.body, {
